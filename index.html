@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$SEX - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .token-info {
+            padding: 0;
+        }
+
+        .token-symbol {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .coming-soon {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .counter-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .counter {
+            font-size: clamp(3rem, 15vw, 12rem);
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .counter-label {
+            font-size: clamp(1rem, 4vw, 2rem);
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .start-date {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.6;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .token-symbol {
+                font-size: 1.5rem;
+            }
+            
+            .coming-soon {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .counter {
+                font-size: clamp(2rem, 20vw, 8rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="token-info">
+            <div class="token-symbol">$SEX</div>
+            <div class="coming-soon">Coming Soon</div>
+        </div>
+    </div>
+
+    <div class="counter-container">
+        <div class="counter-label">Count to Sextrillion</div>
+        <div class="counter pulse" id="counter">0</div>
+    </div>
+
+    <script>
+        // Set the start date to hardcoded current time
+        const startDate = new Date('2025-09-28T01:45:09.449Z');
+        
+        
+        // Calculate the counter value based on elapsed time since start date
+        function updateCounter() {
+            const now = new Date();
+            const elapsed = Math.floor((now - startDate) / 1000); // seconds elapsed
+            document.getElementById('counter').textContent = elapsed.toLocaleString();
+        }
+        
+        // Update counter immediately and then every second
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
